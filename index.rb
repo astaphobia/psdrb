@@ -1,9 +1,9 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require 'sinatra/namespace'
 require 'psd'
 require 'fileutils'
 require 'open-uri'
+require 'sinatra/json'
 
 set :port => 8080
 configure :production do
@@ -14,7 +14,12 @@ end
 get '/' do
     "Hello Guys, ruby here :)"
 end
-    
+
+post '/api/test' do 
+    content_type :json
+    response.body = { :key1 => 'value1', :key2 => 'value2' }.to_json
+end
+
 post '/api/upload-psd' do
     directory = './asset/temp_files/'
     url = params['filepath']
@@ -25,7 +30,10 @@ post '/api/upload-psd' do
     File.open(filepath, "wb") do |file|
       file.write open(url).read
     end
-    psd = PSD.new(filepath)
-    psd.parse!
-    print psd
+    output = PSD.open(filepath) do |psd|
+        p JSON.generate(psd.tree.to_hash)
+        return JSON.generate(psd.tree.to_hash)
+    end
+    json :output => output
+    FileUtils.rm_r directory
 end
