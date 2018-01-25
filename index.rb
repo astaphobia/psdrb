@@ -12,12 +12,7 @@ end
 
 
 get '/' do
-    "Hello Guys, ruby here :)"
-end
-
-post '/api/test' do 
-    content_type :json
-    response.body = { :key1 => 'value1', :key2 => 'value2' }.to_json
+    "Hello Guys, Ruby here :)"
 end
 
 post '/api/upload-psd' do
