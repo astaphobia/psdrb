@@ -16,7 +16,8 @@ get '/' do
 end
 
 post '/api/upload-psd' do
-    directory = './asset/temp_files/'
+    #directory = './asset/temp_files/'
+    directory = './tmp/'
     url = params['filepath']
     filepath = [directory, params['filename']].join()
 
