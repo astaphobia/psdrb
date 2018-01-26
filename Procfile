@@ -1,1 +1,1 @@
-ruby index.rb
+web: bundle exec ruby index.rb
