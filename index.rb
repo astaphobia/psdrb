@@ -16,7 +16,6 @@ get '/' do
 end
 
 post '/api/upload-psd' do
-    #directory = './asset/temp_files/'
     directory = './tmp/'
     url = params['filepath']
     filepath = [directory, params['filename']].join()
@@ -29,7 +28,6 @@ post '/api/upload-psd' do
     output = PSD.open(filepath) do |psd|
         return psd.tree.to_json
     end
-    p json :output => output
     json :output => output
     FileUtils.rm_r directory
 end
