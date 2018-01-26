@@ -26,8 +26,7 @@ post '/api/upload-psd' do
       file.write open(url).read
     end
     output = PSD.open(filepath) do |psd|
-        p JSON.generate(psd.tree.to_hash)
-        return JSON.generate(psd.tree.to_hash)
+        return psd.tree.to_json
     end
     json :output => output
     FileUtils.rm_r directory
