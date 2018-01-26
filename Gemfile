@@ -4,8 +4,7 @@ source "https://rubygems.org"
 
 git_source(:github) {|psdrb| "https://github.com/astaphobia/psdrb" }
 
-gem 'nokogiri', '1.8.1'
-gem 'psd'
+gem 'psd', '~> 3.9'
 gem 'sinatra'
 gem 'thin'
 gem 'sinatra-contrib'
