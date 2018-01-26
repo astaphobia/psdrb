@@ -14,9 +14,7 @@ end
 get '/' do
     "Hello Guys, Ruby here :)"
 end
-get '/' do 
-    'Hello'
-end
+
 post '/api/upload-psd' do
     directory = './asset/temp_files/'
     url = params['filepath']
